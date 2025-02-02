@@ -1,11 +1,7 @@
 public class ContaCorrente extends ContaBancaria {
-    public ContaCorrente() {
-
+    public ContaCorrente(TipoConta tipoConta) {
+        super(tipoConta);
     }
-    public ContaCorrente(double saldo) {
-        super(saldo);
-    }
-
     @Override
     public double depositar(double valor) {
         double taxa = 0.01;
