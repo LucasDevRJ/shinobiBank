@@ -1,4 +1,7 @@
 public class ContaCorrente extends ContaBancaria {
+    public ContaCorrente() {
+
+    }
     public ContaCorrente(double saldo) {
         super(saldo);
     }
