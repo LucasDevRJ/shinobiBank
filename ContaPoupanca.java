@@ -5,6 +5,7 @@ public class ContaPoupanca extends ContaBancaria {
 
     @Override
     public double depositar(double valor) {
-        return 0;
+        super.saldo += valor;
+        return super.saldo;
     }
 }
