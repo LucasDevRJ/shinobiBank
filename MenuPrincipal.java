@@ -17,10 +17,10 @@ public class MenuPrincipal {
             opcao = entrada.nextInt();
             switch (opcao) {
                 case 1:
-                    exibeMenuContaCorrente();
+                    exibeMenuConta(contaCorrente);
                     break;
                 case 2:
-                    exibeMenuContaPoupanca();
+                    exibeMenuConta(contaPoupanca);
                     break;
                 case 3:
                     //finalizaPrograma();
@@ -31,15 +31,15 @@ public class MenuPrincipal {
         } while(opcao != 3);
     }
 
-    public void exibeMenuContaCorrente() {
-        verificaSaldoIgualZero(contaCorrente);
-
+    public void exibeMenuConta(ContaBancaria contaBancaria) {
+        verificaSaldoIgualZero(contaBancaria);
+        TipoConta tipoContaTransferir = contaBancaria.tipoConta == TipoConta.CORRENTE ? TipoConta.POUPANCA : TipoConta.CORRENTE;
         int opcao;
         do {
-            System.out.println("----------|CONTA CORRENTE|----------");
-            System.out.println("1 - Consultar Saldo da Conta Corrente");
-            System.out.println("2 - Depositar na Conta Corrente");
-            System.out.println("3 - Transferir para Conta Poupança");
+            System.out.printf("----------|CONTA %s|----------\n", contaBancaria.tipoConta);
+            System.out.printf("1 - Consultar Saldo da Conta %s\n", contaBancaria.tipoConta);
+            System.out.printf("2 - Depositar na Conta %s\n", contaBancaria.tipoConta);
+            System.out.printf("3 - Transferir para Conta %s\n", tipoContaTransferir);
             System.out.println("4 - Voltar");
             System.out.println("------------------------------------");
 
@@ -62,35 +62,35 @@ public class MenuPrincipal {
         } while (opcao != 3);
     }
 
-    public void exibeMenuContaPoupanca() {
-        verificaSaldoIgualZero(contaPoupanca);
-
-        int opcao;
-        do {
-            System.out.println("----------|CONTA POUPANÇA|----------");
-            System.out.println("1 - Consultar Saldo");
-            System.out.println("2 - Depositar");
-            System.out.println("3 - Voltar");
-            System.out.println("------------------------------------");
-
-            System.out.print("Digite a sua opção desejada: ");
-            opcao = entrada.nextInt();
-
-            switch (opcao) {
-                case 1:
-//                    consultarSaldo();
-                    break;
-                case 2:
-//                    depositarContaCorrente();
-                    break;
-                case 3:
-//                    exibeMenuPrincipal();
-                    break;
-                default:
-                    System.out.println("Opção inválida.");
-            }
-        } while (opcao != 3);
-    }
+//    public void exibeMenuContaPoupanca() {
+//        verificaSaldoIgualZero(contaPoupanca);
+//
+//        int opcao;
+//        do {
+//            System.out.println("----------|CONTA POUPANÇA|----------");
+//            System.out.println("1 - Consultar Saldo");
+//            System.out.println("2 - Depositar");
+//            System.out.println("3 - Voltar");
+//            System.out.println("------------------------------------");
+//
+//            System.out.print("Digite a sua opção desejada: ");
+//            opcao = entrada.nextInt();
+//
+//            switch (opcao) {
+//                case 1:
+////                    consultarSaldo();
+//                    break;
+//                case 2:
+////                    depositarContaCorrente();
+//                    break;
+//                case 3:
+////                    exibeMenuPrincipal();
+//                    break;
+//                default:
+//                    System.out.println("Opção inválida.");
+//            }
+//        } while (opcao != 3);
+//    }
     public double verificaSaldoIgualZero(ContaBancaria conta) {
         if (conta.saldo == 0.0) {
             do {
