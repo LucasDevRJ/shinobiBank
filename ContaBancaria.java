@@ -4,7 +4,8 @@ public abstract class ContaBancaria implements Conta {
         this.saldo = saldo;
     }
     @Override
-    public void consultarSaldo() {
-        System.out.println("Saldo: ¥" + this.saldo);
+    public double consultarSaldo() {
+//        System.out.println("Saldo: ¥" + this.saldo);
+        return this.saldo;
     }
 }

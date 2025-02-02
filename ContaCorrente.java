@@ -4,12 +4,10 @@ public class ContaCorrente extends ContaBancaria {
     }
 
     @Override
-    public void consultarSaldo() {
-
-    }
-
-    @Override
-    public void depositar(double valor) {
-        super.saldo += valor;
+    public double depositar(double valor) {
+        double taxa = 0.01;
+        double valorDaTaxa = valor * taxa;
+        valor -= valorDaTaxa;
+        return valor;
     }
 }
