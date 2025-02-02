@@ -62,7 +62,7 @@ public class MenuPrincipal {
     }
 
     public void exibeMenuContaPoupanca() {
-        verificaSaldoIgualZero();
+        verificaSaldoIgualZero(contaPoupanca);
 
         int opcao;
         do {

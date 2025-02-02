@@ -1,5 +1,6 @@
 public abstract class ContaBancaria implements Conta {
     public double saldo;
+    TipoConta tipoConta;
     public ContaBancaria() {
 
     }
