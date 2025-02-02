@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class MenuPrincipal {
     Scanner entrada = new Scanner(System.in);
-    ContaCorrente contaCorrente = new ContaCorrente(TipoConta.CONRRENTE);
+    ContaCorrente contaCorrente = new ContaCorrente(TipoConta.CORRENTE);
     ContaPoupanca contaPoupanca = new ContaPoupanca(TipoConta.POUPANCA);
 
     public void exibeMenuPrincipal() {
@@ -48,10 +48,10 @@ public class MenuPrincipal {
 
             switch (opcao) {
                 case 1:
-                    consultaSaldoContaCorrente();
+                    consultarSaldo(contaCorrente);
                     break;
                 case 2:
-                    depositarContaCorrente();
+                    depositarContaCorrente(contaPoupanca);
                     break;
                 case 3:
                     transferirContaCorrenteParaContaPoupanca();
@@ -78,13 +78,13 @@ public class MenuPrincipal {
 
             switch (opcao) {
                 case 1:
-                    consultaSaldoContaCorrente();
+//                    consultarSaldo();
                     break;
                 case 2:
-                    depositarContaCorrente();
+//                    depositarContaCorrente();
                     break;
                 case 3:
-                    exibeMenuPrincipal();
+//                    exibeMenuPrincipal();
                     break;
                 default:
                     System.out.println("Opção inválida.");
@@ -100,18 +100,31 @@ public class MenuPrincipal {
         }
         return contaCorrente.saldo;
     }
-    public void consultaSaldoContaCorrente() {
-        System.out.printf("Saldo Atual do Ninja: ¥%.2f\n", contaCorrente.consultarSaldo());
+    public void consultarSaldo(ContaBancaria contaBancaria) {
+        System.out.printf("Saldo Atual do Ninja: ¥%.2f\n", contaBancaria.consultarSaldo());
     }
-    public void depositarContaCorrente() {
+    public void depositarContaCorrente(ContaBancaria contaBancaria) {
         System.out.print("Digite o valor do deposito da Conta Corrente do Ninja: ¥");
         double deposito = entrada.nextDouble();
-        double valorDepositado = contaCorrente.depositar(deposito);
+        double valorDepositado;
+        if (contaBancaria.tipoConta == TipoConta.CORRENTE) {
+            valorDepositado = contaCorrente.depositar(deposito);
+        } else {
+            valorDepositado = contaPoupanca.depositar(deposito);
+        }
         System.out.printf("O valor de ¥%.2f foi depositado com sucesso.\n", valorDepositado);
     }
     public void transferirContaCorrenteParaContaPoupanca() {
         System.out.print("Digite o valor da transferência: ¥");
         double valorTransferencia = entrada.nextDouble();
+
+        while (valorTransferencia > contaCorrente.saldo) {
+            System.out.println("Saldo insuficiente.");
+//            consultarSaldo();
+            System.out.print("Digite o valor da transferência: ¥");
+            valorTransferencia = entrada.nextDouble();
+        }
+
         double valorTransferido = contaCorrente.transferir(contaPoupanca, valorTransferencia);
         System.out.println("Valor Transferido: ¥" + valorTransferido);
         System.out.println("Tipo de Conta a Receber: " + contaPoupanca.tipoConta);

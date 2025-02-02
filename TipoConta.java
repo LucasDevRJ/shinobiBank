@@ -1,4 +1,4 @@
 public enum TipoConta {
-    CONRRENTE,
+    CORRENTE,
     POUPANCA
 }
