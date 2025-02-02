@@ -51,10 +51,10 @@ public class MenuPrincipal {
                     consultarSaldo(contaCorrente);
                     break;
                 case 2:
-                    depositarContaCorrente(contaPoupanca);
+                    depositar(contaPoupanca);
                     break;
                 case 3:
-                    transferirContaCorrenteParaContaPoupanca();
+                    transferir(contaPoupanca);
                     break;
                 default:
                     System.out.println("Opção inválida.");
@@ -95,16 +95,17 @@ public class MenuPrincipal {
         if (conta.saldo == 0.0) {
             do {
                 System.out.print("Digite o valor valido(positivo) e inicial da Conta Corrente do Ninja: ¥");
-                contaCorrente.saldo = entrada.nextDouble();
-            } while (contaCorrente.saldo <= 0);
+                conta.saldo = entrada.nextDouble();
+            } while (conta.saldo <= 0);
         }
-        return contaCorrente.saldo;
+        return conta.saldo;
     }
+
     public void consultarSaldo(ContaBancaria contaBancaria) {
         System.out.printf("Saldo Atual do Ninja: ¥%.2f\n", contaBancaria.consultarSaldo());
     }
-    public void depositarContaCorrente(ContaBancaria contaBancaria) {
-        System.out.print("Digite o valor do deposito da Conta Corrente do Ninja: ¥");
+    public void depositar(ContaBancaria contaBancaria) {
+        System.out.print("Digite o valor do deposito da Conta do Ninja: ¥");
         double deposito = entrada.nextDouble();
         double valorDepositado;
         if (contaBancaria.tipoConta == TipoConta.CORRENTE) {
@@ -114,13 +115,13 @@ public class MenuPrincipal {
         }
         System.out.printf("O valor de ¥%.2f foi depositado com sucesso.\n", valorDepositado);
     }
-    public void transferirContaCorrenteParaContaPoupanca() {
+    public void transferir(ContaPoupanca contaPoupanca) {
         System.out.print("Digite o valor da transferência: ¥");
         double valorTransferencia = entrada.nextDouble();
 
-        while (valorTransferencia > contaCorrente.saldo) {
-            System.out.println("Saldo insuficiente.");
-//            consultarSaldo();
+        while (valorTransferencia <= 0.0 || valorTransferencia > contaCorrente.saldo) {
+            System.out.println("Valor invalido ou saldo insuficiente.");
+            consultarSaldo(contaCorrente);
             System.out.print("Digite o valor da transferência: ¥");
             valorTransferencia = entrada.nextDouble();
         }
@@ -128,5 +129,20 @@ public class MenuPrincipal {
         double valorTransferido = contaCorrente.transferir(contaPoupanca, valorTransferencia);
         System.out.println("Valor Transferido: ¥" + valorTransferido);
         System.out.println("Tipo de Conta a Receber: " + contaPoupanca.tipoConta);
+    }
+    public void transferir(ContaCorrente contaCorrente) {
+        System.out.print("Digite o valor da transferência: ¥");
+        double valorTransferencia = entrada.nextDouble();
+
+        while (valorTransferencia <= 0.0 || valorTransferencia > contaPoupanca.saldo) {
+            System.out.println("Valor invalido ou saldo insuficiente.");
+            consultarSaldo(contaPoupanca);
+            System.out.print("Digite o valor da transferência: ¥");
+            valorTransferencia = entrada.nextDouble();
+        }
+
+        double valorTransferido = contaPoupanca.transferir(contaCorrente, valorTransferencia);
+        System.out.println("Valor Transferido: ¥" + valorTransferido);
+        System.out.println("Tipo de Conta a Receber: " + contaCorrente.tipoConta);
     }
 }
