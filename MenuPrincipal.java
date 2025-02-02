@@ -33,18 +33,14 @@ public class MenuPrincipal {
 
     public void exibeMenuConta(ContaBancaria contaBancaria) {
         verificaSaldoIgualZero(contaBancaria);
-        TipoConta tipoContaTransferir = contaBancaria.tipoConta == TipoConta.CORRENTE ? TipoConta.CORRENTE : TipoConta.POUPANCA;
-        if (tipoContaTransferir == TipoConta.CORRENTE) {
-            contaBancaria = contaCorrente;
-        } else {
-            contaBancaria = contaPoupanca;
-        }
+        contaBancaria = retornaTipoConta(contaBancaria);
+        TipoConta tipoConta = contaBancaria.tipoConta == TipoConta.CORRENTE ? TipoConta.POUPANCA : TipoConta.CORRENTE;
         int opcao;
         do {
             System.out.printf("----------|CONTA %s|----------\n", contaBancaria.tipoConta);
             System.out.printf("1 - Consultar Saldo da Conta %s\n", contaBancaria.tipoConta);
             System.out.printf("2 - Depositar na Conta %s\n", contaBancaria.tipoConta);
-            System.out.printf("3 - Transferir para Conta %s\n", tipoContaTransferir);
+            System.out.printf("3 - Transferir para Conta %s\n", tipoConta);
             System.out.println("4 - Voltar");
             System.out.println("------------------------------------");
 
