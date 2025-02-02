@@ -116,7 +116,7 @@ public class MenuPrincipal {
         System.out.printf("O valor de ¥%.2f foi depositado com sucesso.\n", valorDepositado);
     }
     public void transferir(ContaPoupanca contaPoupanca) {
-        System.out.print("Digite o valor da transferência: ¥");
+        System.out.print("Digite o valor da transferência para a Conta Poupança: ¥");
         double valorTransferencia = entrada.nextDouble();
 
         while (valorTransferencia <= 0.0 || valorTransferencia > contaCorrente.saldo) {
@@ -127,11 +127,11 @@ public class MenuPrincipal {
         }
 
         double valorTransferido = contaCorrente.transferir(contaPoupanca, valorTransferencia);
-        System.out.println("Valor Transferido: ¥" + valorTransferido);
+        System.out.println("Valor Transferido para a Conta Poupança: ¥" + valorTransferido);
         System.out.println("Tipo de Conta a Receber: " + contaPoupanca.tipoConta);
     }
     public void transferir(ContaCorrente contaCorrente) {
-        System.out.print("Digite o valor da transferência: ¥");
+        System.out.print("Digite o valor da transferência para a Conta Corrente: ¥");
         double valorTransferencia = entrada.nextDouble();
 
         while (valorTransferencia <= 0.0 || valorTransferencia > contaPoupanca.saldo) {
@@ -142,7 +142,7 @@ public class MenuPrincipal {
         }
 
         double valorTransferido = contaPoupanca.transferir(contaCorrente, valorTransferencia);
-        System.out.println("Valor Transferido: ¥" + valorTransferido);
+        System.out.println("Valor Transferido para a Conta Corrente: ¥" + valorTransferido);
         System.out.println("Tipo de Conta a Receber: " + contaCorrente.tipoConta);
     }
 }
