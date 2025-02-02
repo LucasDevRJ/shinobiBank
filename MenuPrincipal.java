@@ -102,7 +102,7 @@ public class MenuPrincipal {
     }
 
     public void consultaSaldoContaCorrente() {
-        System.out.printf("Saldo Atual do Ninja: ¥%.2f\n", contaCorrente.saldo);
+        System.out.printf("Saldo Atual do Ninja: ¥%.2f\n", contaCorrente.consultarSaldo());
     }
 
     public void depositarContaCorrente() {

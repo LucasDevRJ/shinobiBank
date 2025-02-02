@@ -7,8 +7,13 @@ public abstract class ContaBancaria implements Conta {
     public ContaBancaria(double saldo) {
         this.saldo = saldo;
     }
-    @Override
     public double consultarSaldo() {
         return this.saldo;
+    }
+
+    public double transferir(ContaBancaria contaBancaria, double valorDaTransferencia) {
+        contaBancaria.saldo += valorDaTransferencia;
+        this.saldo -= valorDaTransferencia;
+        return valorDaTransferencia;
     }
 }
