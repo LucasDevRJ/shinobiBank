@@ -5,7 +5,6 @@ public abstract class ContaBancaria implements Conta {
     }
     @Override
     public double consultarSaldo() {
-//        System.out.println("Saldo: ¥" + this.saldo);
         return this.saldo;
     }
 }
