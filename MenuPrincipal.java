@@ -30,23 +30,48 @@ public class MenuPrincipal {
     }
 
     public void exibeMenuContaCorrente() {
+        verificaSaldoIgualZero();
+
+        int opcao;
+        do {
+            System.out.println("----------|CONTA CORRENTE|----------");
+            System.out.println("1 - Consultar Saldo");
+            System.out.println("2 - Depositar");
+            System.out.println("3 - Voltar");
+            System.out.println("------------------------------------");
+
+            System.out.print("Digite a sua opção desejada: ");
+            opcao = entrada.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    consultaSaldoContaCorrente();
+                    break;
+                case 2:
+                    depositarContaCorrente();
+                    break;
+            }
+        } while (opcao != 3);
+    }
+
+    public double verificaSaldoIgualZero() {
         if (contaCorrente.saldo == 0.0) {
-            System.out.print("Digite o valor incial da Conta Corrente do Ninja: ¥");
-            contaCorrente.saldo = entrada.nextDouble();
+            do {
+                System.out.print("Digite o valor valido(positivo) e inicial da Conta Corrente do Ninja: ¥");
+                contaCorrente.saldo = entrada.nextDouble();
+            } while (contaCorrente.saldo <= 0);
         }
-        System.out.println("----------|CONTA CORRENTE|----------");
-        System.out.println("1 - Consultar Saldo");
-        System.out.println("2 - Depositar");
-        System.out.println("3 - Voltar");
-        System.out.println("------------------------------------");
+        return contaCorrente.saldo;
+    }
 
-        System.out.print("Digite a sua opção desejada: ");
-        int opcao = entrada.nextInt();
+    public void consultaSaldoContaCorrente() {
+        System.out.printf("Saldo Atual do Ninja: ¥%.2f\n", contaCorrente.saldo);
+    }
 
-        switch (opcao) {
-            case 1:
-                System.out.printf("Saldo Atual do Ninja: ¥%.2f\n", contaCorrente.saldo);
-                break;
-        }
+    public void depositarContaCorrente() {
+        System.out.print("Digite o valor do deposito da Conta Corrente do Ninja: ¥");
+        double deposito = entrada.nextDouble();
+        double valorDepositado = contaCorrente.depositar(deposito);
+        System.out.printf("O valor de ¥%.2f foi depositado com sucesso.\n", valorDepositado);
     }
 }

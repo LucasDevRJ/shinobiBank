@@ -11,6 +11,7 @@ public class ContaCorrente extends ContaBancaria {
         double taxa = 0.01;
         double valorDaTaxa = valor * taxa;
         valor -= valorDaTaxa;
-        return valor;
+        super.saldo += valor;
+        return super.saldo;
     }
 }
