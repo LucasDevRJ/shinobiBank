@@ -32,14 +32,13 @@ public class MenuPrincipal {
 
     public void exibeMenuConta(ContaBancaria contaBancaria) {
         verificaSaldoIgualZero(contaBancaria);
-//        contaBancaria = retornaTipoConta(contaBancaria);
-        TipoConta tipoConta = contaBancaria.tipoConta == TipoConta.CORRENTE ? TipoConta.POUPANCA : TipoConta.CORRENTE;
+        ContaBancaria outraConta = retornaOutraConta(contaBancaria);
         int opcao;
         do {
             System.out.printf("----------|CONTA %s|----------\n", contaBancaria.tipoConta);
             System.out.printf("1 - Consultar Saldo da Conta %s\n", contaBancaria.tipoConta);
             System.out.printf("2 - Depositar na Conta %s\n", contaBancaria.tipoConta);
-            System.out.printf("3 - Transferir para Conta %s\n", tipoConta);
+            System.out.printf("3 - Transferir para Conta %s\n", outraConta.tipoConta);
             System.out.println("4 - Voltar");
             System.out.println("------------------------------------");
 
@@ -75,7 +74,7 @@ public class MenuPrincipal {
         return conta.saldo;
     }
 
-    public ContaBancaria retornaTipoContaReceber(ContaBancaria contaBancaria) {
+    public ContaBancaria retornaOutraConta(ContaBancaria contaBancaria) {
         TipoConta tipoContaReceber = contaBancaria.tipoConta == TipoConta.CORRENTE ? TipoConta.CORRENTE : TipoConta.POUPANCA;
         if (tipoContaReceber == TipoConta.CORRENTE) {
             contaBancaria = contaPoupanca;
@@ -97,14 +96,13 @@ public class MenuPrincipal {
         System.out.print("Digite o valor do deposito da Conta do Ninja: ¥");
         double deposito = entrada.nextDouble();
 
-        contaBancaria = retornaTipoContaReceber(contaBancaria);
+        System.out.printf("O valor de ¥%.2f foi depositado com sucesso.\n", deposito);
 
         if (contaBancaria.tipoConta == TipoConta.CORRENTE) {
             contaCorrente.depositar(deposito);
             double taxa = contaCorrente.calculaTaxa();
             double valorDepositoTaxa = deposito * taxa;
             double valorDepositoAposTaxa = deposito - valorDepositoTaxa;
-            System.out.printf("O valor de ¥%.2f foi depositado com sucesso.\n", deposito);
             System.out.printf("Valor da taxa %.2f%% do deposito: ¥%.2f.\n", taxa*100, valorDepositoTaxa);
             System.out.printf("Valor após a taxa depositado: ¥%.2f.\n", valorDepositoAposTaxa);
         } else {
@@ -112,12 +110,10 @@ public class MenuPrincipal {
         }
     }
     public void transferir(ContaBancaria contaBancaria) {
+        ContaBancaria outraConta = retornaOutraConta(contaBancaria);
+
         System.out.print("Digite o valor da transferência para a Conta Poupança: ¥");
         double valorTransferencia = entrada.nextDouble();
-
-        ContaBancaria contaBancariaReceber = retornaTipoContaReceber(contaBancaria);
-        System.out.println(contaBancariaReceber.tipoConta);
-//        TipoConta tipoConta = retornaTipoContaInverso(contaBancaria);
 
         while (valorTransferencia <= 0.0 || valorTransferencia > contaBancaria.saldo) {
             System.out.println("Valor invalido ou saldo insuficiente.");
@@ -126,9 +122,9 @@ public class MenuPrincipal {
             valorTransferencia = entrada.nextDouble();
         }
 
-        double valorTransferido = contaBancaria.transferir(contaBancariaReceber, valorTransferencia);
+        double valorTransferido = contaBancaria.transferir(outraConta, valorTransferencia);
         System.out.printf("Valor Transferido da Conta %s: ¥%.2f\n",contaBancaria.tipoConta, valorTransferido);
-        System.out.println("Tipo de Conta a Receber: " + contaBancariaReceber.tipoConta);
+        System.out.println("Tipo de Conta a Receber: " + outraConta.tipoConta);
     }
 
     public void finalizaPrograma() {

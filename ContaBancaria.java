@@ -10,13 +10,8 @@ public abstract class ContaBancaria implements Conta {
     }
     @Override
     public double transferir(ContaBancaria contaBancaria, double valorTransferencia) {
-//        this.saldo -= valorTransferencia;
-//        contaBancaria.saldo += valorTransferencia;
-//        return valorTransferencia;
         contaBancaria.saldo += valorTransferencia;
-        System.out.println(contaBancaria.saldo);
         this.saldo -= valorTransferencia;
-        System.out.println(contaBancaria.saldo);
         return valorTransferencia;
     }
     @Override
