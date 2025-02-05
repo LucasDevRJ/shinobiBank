@@ -86,11 +86,6 @@ public class MenuPrincipal {
         return contaBancaria;
     }
 
-    public TipoConta retornaTipoContaInverso(ContaBancaria contaBancaria) {
-        TipoConta tipoConta = contaBancaria.retornaTipoConta() == TipoConta.CORRENTE ? TipoConta.POUPANCA : TipoConta.CORRENTE;
-        return tipoConta;
-    }
-
     public void consultarSaldo(ContaBancaria contaBancaria) {
         System.out.printf("Saldo Atual do Ninja: ¥%.2f\n", contaBancaria.consultarSaldo());
     }
