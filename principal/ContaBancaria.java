@@ -1,3 +1,5 @@
+package principal;
+
 public abstract class ContaBancaria implements Conta {
     public double saldo;
     TipoConta tipoConta;
@@ -15,7 +17,7 @@ public abstract class ContaBancaria implements Conta {
         return valorTransferencia;
     }
     @Override
-    public TipoConta exibeTipoConta() {
+    public TipoConta retornaTipoConta() {
         return this.tipoConta;
     }
 }

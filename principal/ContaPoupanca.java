@@ -1,3 +1,5 @@
+package principal;
+
 public class ContaPoupanca extends ContaBancaria {
     public ContaPoupanca(TipoConta tipoConta) {
         super(tipoConta);

@@ -1,3 +1,5 @@
+package principal;
+
 import java.util.Scanner;
 
 public class MenuPrincipal {
@@ -35,10 +37,10 @@ public class MenuPrincipal {
         ContaBancaria outraConta = retornaOutraConta(contaBancaria);
         int opcao;
         do {
-            System.out.printf("----------|CONTA %s|----------\n", contaBancaria.tipoConta);
-            System.out.printf("1 - Consultar Saldo da Conta %s\n", contaBancaria.tipoConta);
-            System.out.printf("2 - Depositar na Conta %s\n", contaBancaria.tipoConta);
-            System.out.printf("3 - Transferir para Conta %s\n", outraConta.tipoConta);
+            System.out.printf("----------|CONTA %s|----------\n", contaBancaria.retornaTipoConta());
+            System.out.printf("1 - Consultar Saldo da Conta %s\n", contaBancaria.retornaTipoConta());
+            System.out.printf("2 - Depositar na Conta %s\n", contaBancaria.retornaTipoConta());
+            System.out.printf("3 - Transferir para Conta %s\n", outraConta.retornaTipoConta());
             System.out.println("4 - Voltar");
             System.out.println("------------------------------------");
 
@@ -75,7 +77,7 @@ public class MenuPrincipal {
     }
 
     public ContaBancaria retornaOutraConta(ContaBancaria contaBancaria) {
-        TipoConta tipoContaReceber = contaBancaria.tipoConta == TipoConta.CORRENTE ? TipoConta.CORRENTE : TipoConta.POUPANCA;
+        TipoConta tipoContaReceber = contaBancaria.retornaTipoConta() == TipoConta.CORRENTE ? TipoConta.CORRENTE : TipoConta.POUPANCA;
         if (tipoContaReceber == TipoConta.CORRENTE) {
             contaBancaria = contaPoupanca;
         } else {
@@ -85,7 +87,7 @@ public class MenuPrincipal {
     }
 
     public TipoConta retornaTipoContaInverso(ContaBancaria contaBancaria) {
-        TipoConta tipoConta = contaBancaria.tipoConta == TipoConta.CORRENTE ? TipoConta.POUPANCA : TipoConta.CORRENTE;
+        TipoConta tipoConta = contaBancaria.retornaTipoConta() == TipoConta.CORRENTE ? TipoConta.POUPANCA : TipoConta.CORRENTE;
         return tipoConta;
     }
 
@@ -98,7 +100,7 @@ public class MenuPrincipal {
 
         System.out.printf("O valor de ¥%.2f foi depositado com sucesso.\n", deposito);
 
-        if (contaBancaria.tipoConta == TipoConta.CORRENTE) {
+        if (contaBancaria.retornaTipoConta() == TipoConta.CORRENTE) {
             contaCorrente.depositar(deposito);
             double taxa = contaCorrente.calculaTaxa();
             double valorDepositoTaxa = deposito * taxa;
@@ -123,8 +125,8 @@ public class MenuPrincipal {
         }
 
         double valorTransferido = contaBancaria.transferir(outraConta, valorTransferencia);
-        System.out.printf("Valor Transferido da Conta %s: ¥%.2f\n",contaBancaria.tipoConta, valorTransferido);
-        System.out.println("Tipo de Conta a Receber: " + outraConta.tipoConta);
+        System.out.printf("Valor Transferido da Conta %s: ¥%.2f\n",contaBancaria.retornaTipoConta(), valorTransferido);
+        System.out.println("Tipo de Conta a Receber: " + outraConta.retornaTipoConta());
     }
 
     public void finalizaPrograma() {
