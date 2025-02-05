@@ -20,6 +20,9 @@ Para acessar o projeto e executa-lo na sua máquina, basta clicar <a href="">aqu
 ## Aprendizados
 Meu maior aprendizado com esse projeto foi saber utilizar melhor a Abstração da Orientação a Objetos. Foi o que me fez ficar mais preso ao projeto. Mas fiquei feliz com resultado.
 
+## Apresentação
+Fiz um vídeo apresentando o <a href="https://www.linkedin.com/posts/lucas-pereira-de-lima-programador_java-projeto-backend-activity-7292985238287216640-0Cpk?utm_source=share&utm_medium=member_desktop">projeto</a>.
+
 ## Conteúdos
 * Classes Concretas e Abstratas
 * Métodos Concretos e Abstratos
