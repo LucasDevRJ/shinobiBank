@@ -4,7 +4,7 @@ Projeto que simula um sistema bancário sendo executado via terminal com intera�
 ![Print do sistema](https://github.com/user-attachments/assets/9ead40ac-1e80-4f74-9478-084b1845b394)
 
 ## Como acessar o projeto
-Para acessar o projeto e executa-lo na sua máquina, basta clicar <a href="">aqui</a> para baixar o projeto e colocar o projeto em sua IDE que funcione Java.
+Para acessar o projeto e executa-lo na sua máquina, basta clicar <a href="https://github.com/LucasDevRJ/shinobiBank/archive/refs/heads/main.zip">aqui</a> para baixar o projeto e colocar o projeto em sua IDE que funcione Java.
 
 ## Instruções do Desafio
 > Para acessar o projeto e executa-lo na sua máquina, basta clicar aqui para baixar o projeto e colocar o projeto em sua IDE que funcione Java.
